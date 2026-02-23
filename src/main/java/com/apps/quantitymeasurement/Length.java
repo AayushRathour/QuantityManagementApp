@@ -56,6 +56,23 @@ public class Length {
 		return new Length(resultantValue, targetUnit);
 	}
 	
+	public Length add(Length thatLength) {
+		if(thatLength == null) throw new IllegalArgumentException("Enter a valid length for addition");
+		
+		double value1 = this.convertToBaseUnit();
+		double value2 = thatLength.convertToBaseUnit();
+		double totalValue = value1 + value2;
+		double resultantValue = convertFromBaseToTargetUnit(totalValue, unit);
+		
+		return new Length(resultantValue, this.unit);
+	}
+	
+	// Rounded up to 2 decimal places
+	private double convertFromBaseToTargetUnit(double lengthInInches, LengthUnit targetUnit) {
+		double result = lengthInInches / targetUnit.getConversionFactor();
+		return Math.round(result * 100.0) / 100.0;
+	}
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,7 +84,7 @@ public class Length {
     }
     
     @Override
-    public String toString() {
+    public String toString() {	
     	return this.value + "" + unit;
     }
     
