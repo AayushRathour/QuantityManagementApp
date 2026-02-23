@@ -1,0 +1,22 @@
+# Maven build folder
+/target/
+
+# Logs
+*.log
+
+# Eclipse / STS files
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+
+# IDE metadata
+.metadata/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# JVM crash logs
+hs_err_pid*
