@@ -25,4 +25,6 @@ public interface IMeasurable {
     default void validateOperationSupport(String operation) {
         
     }
+
+	double toBase(double value);
 }

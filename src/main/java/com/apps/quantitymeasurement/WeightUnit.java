@@ -60,4 +60,10 @@ public enum WeightUnit implements IMeasurable{
         System.out.println(grams + " grams is " + tonnes + " tonnes");
         System.out.println();
     }
+
+	@Override
+	public double toBase(double value) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

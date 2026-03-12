@@ -57,4 +57,10 @@ public enum TemperatureUnit implements IMeasurable {
             throw new UnsupportedOperationException(message);
         }
     }
+
+	@Override
+	public double toBase(double value) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

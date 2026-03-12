@@ -37,4 +37,10 @@ public enum LengthUnit implements IMeasurable{
 	public String getUnitName() {
 		return this.name();
 	}
+
+	@Override
+	public double toBase(double value) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
