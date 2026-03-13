@@ -1,36 +1,43 @@
 package com.apps.quantitymeasurement.controller;
 
-import com.apps.quantitymeasurement.dto.QuantityDTO;
+import com.apps.quantitymeasurement.entity.QuantityDTO;
+import com.apps.quantitymeasurement.exception.QuantityMeasurementException;
 import com.apps.quantitymeasurement.service.IQuantityMeasurementService;
 
 public class QuantityMeasurementController {
+    private IQuantityMeasurementService service;
 
-    private final IQuantityMeasurementService quantityMeasurementService;
-
-    public QuantityMeasurementController(IQuantityMeasurementService quantityMeasurementService) {
-        if (quantityMeasurementService == null) {
-            throw new IllegalArgumentException("Service cannot be null");
-        }
-        this.quantityMeasurementService = quantityMeasurementService;
+    public QuantityMeasurementController(IQuantityMeasurementService service) {
+        this.service = service;
     }
 
-    public boolean performComparison(QuantityDTO quantity1, QuantityDTO quantity2) {
-        return quantityMeasurementService.compare(quantity1, quantity2);
+    public boolean performCompare(QuantityDTO q1, QuantityDTO q2) {
+    	boolean result = service.compare(q1, q2);
+        System.out.println("Comparison Result: " + (result ? "Equal" : "Not Equal"));
+        return result;
     }
 
-    public QuantityDTO performConversion(QuantityDTO sourceQuantity, String targetUnit) {
-        return quantityMeasurementService.convert(sourceQuantity, targetUnit);
+    public QuantityDTO performConvert(QuantityDTO quantity, String targetUnit) {
+    	QuantityDTO result = service.convert(quantity, targetUnit);
+        System.out.println("Converted Result: " + result.getValue() + " " + result.getUnit().getUnitName());
+        return result;
     }
 
-    public QuantityDTO performAddition(QuantityDTO quantity1, QuantityDTO quantity2) {
-        return quantityMeasurementService.add(quantity1, quantity2);
+    public QuantityDTO performAdd(QuantityDTO q1, QuantityDTO q2) {
+    	QuantityDTO result = service.add(q1, q2);
+        System.out.println("Addition Result: " + result.getValue() + " " + result.getUnit().getUnitName());
+        return result;
     }
 
-    public QuantityDTO performSubtraction(QuantityDTO quantity1, QuantityDTO quantity2) {
-        return quantityMeasurementService.subtract(quantity1, quantity2);
+    public QuantityDTO performSubtract(QuantityDTO q1, QuantityDTO q2) {
+    	QuantityDTO result = service.subtract(q1, q2);
+        System.out.println("Subtraction Result: " + result.getValue() + " " + result.getUnit().getUnitName());
+        return result;
     }
 
-    public double performDivision(QuantityDTO quantity1, QuantityDTO quantity2) {
-        return quantityMeasurementService.divide(quantity1, quantity2);
+    public double performDivide(QuantityDTO q1, QuantityDTO q2) {
+    	double result = service.divide(q1, q2);
+        System.out.println("Division Result: " + result);
+        return result;
     }
 }

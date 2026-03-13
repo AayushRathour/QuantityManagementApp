@@ -1,77 +1,92 @@
 package com.apps.quantitymeasurement.entity;
 
 import java.io.Serializable;
+import com.apps.quantitymeasurement.unit.IMeasurable;
 
 public class QuantityMeasurementEntity implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
-    private String operationType;
-    private String operand1;
-    private String operand2;
-    private String result;
-    private boolean error;
-    private String errorMessage;
+    // Operand 1
+    public double thisValue;
+    public String thisUnit;
+    public String thisMeasurementType;
 
-    public QuantityMeasurementEntity(String operationType, String operand1, String operand2, String result) {
-        this.operationType = operationType;
-        this.operand1 = operand1;
-        this.operand2 = operand2;
-        this.result = result;
-        this.error = false;
-    }
+    // Operand 2
+    public double thatValue;
+    public String thatUnit;
+    public String thatMeasurementType;
 
-    public QuantityMeasurementEntity(String operationType, String operand1, String result) {
-        this.operationType = operationType;
-        this.operand1 = operand1;
-        this.result = result;
-        this.error = false;
-    }
+    // Operation type
+    public String operation;
 
-    public QuantityMeasurementEntity(String operationType, String operand1, String operand2, String errorMessage, boolean error) {
-        this.operationType = operationType;
-        this.operand1 = operand1;
-        this.operand2 = operand2;
-        this.errorMessage = errorMessage;
-        this.error = error;
-    }
+    // Result values
+    public double resultValue;
+    public String resultUnit;
+    public String resultMeasurementType;
 
-    public String getOperationType() {
-        return operationType;
-    }
+    // For comparison results
+    public String resultString;
 
-    public String getOperand1() {
-        return operand1;
-    }
+    // Error handling
+    public boolean isError;
+    public String errorMessage;
 
-    public String getOperand2() {
-        return operand2;
-    }
+    public QuantityMeasurementEntity(
+            QuantityModel<IMeasurable> thisQuantity,
+            QuantityModel<IMeasurable> thatQuantity,
+            String operation) {
 
-    public String getResult() {
-        return result;
-    }
-
-    public boolean isError() {
-        return error;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    @Override
-    public String toString() {
-        if (error) {
-            return "OperationType=" + operationType +
-                    ", operand1=" + operand1 +
-                    ", operand2=" + operand2 +
-                    ", errorMessage=" + errorMessage;
+        if (thisQuantity != null) {
+            this.thisValue = thisQuantity.getValue();
+            this.thisUnit = thisQuantity.getUnit().getUnitName();
+            this.thisMeasurementType = thisQuantity.getUnit().getMeasurementType();
         }
 
-        return "OperationType=" + operationType +
-                ", operand1=" + operand1 +
-                ", operand2=" + operand2 +
-                ", result=" + result;
+        if (thatQuantity != null) {
+            this.thatValue = thatQuantity.getValue();
+            this.thatUnit = thatQuantity.getUnit().getUnitName();
+            this.thatMeasurementType = thatQuantity.getUnit().getMeasurementType();
+        }
+
+        this.operation = operation;
+    }
+
+    // Constructor
+    public QuantityMeasurementEntity(
+            QuantityModel<IMeasurable> thisQuantity,
+            QuantityModel<IMeasurable> thatQuantity,
+            String operation,
+            String result) {
+
+        this(thisQuantity, thatQuantity, operation);
+        this.resultString = result;
+    }
+
+    
+    public QuantityMeasurementEntity(
+            QuantityModel<IMeasurable> thisQuantity,
+            QuantityModel<IMeasurable> thatQuantity,
+            String operation,
+            QuantityModel<IMeasurable> result) {
+
+        this(thisQuantity, thatQuantity, operation);
+
+        if (result != null) {
+            this.resultValue = result.getValue();
+            this.resultUnit = result.getUnit().getUnitName();
+            this.resultMeasurementType = result.getUnit().getMeasurementType();
+        }
+    }
+
+    public QuantityMeasurementEntity(
+            QuantityModel<IMeasurable> thisQuantity,
+            QuantityModel<IMeasurable> thatQuantity,
+            String operation,
+            String errorMessage,
+            boolean isError) {
+
+        this(thisQuantity, thatQuantity, operation);
+        this.errorMessage = errorMessage;
+        this.isError = isError;
     }
 }

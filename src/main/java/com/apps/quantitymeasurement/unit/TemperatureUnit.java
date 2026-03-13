@@ -1,4 +1,4 @@
-package com.apps.quantitymeasurement;
+package com.apps.quantitymeasurement.unit;
 
 import java.util.function.Function;
 
@@ -12,7 +12,6 @@ public enum TemperatureUnit implements IMeasurable {
 
     final Function<Double, Double> CELSIUS_TO_CELSIUS = (celsius) -> celsius;
 
-    // conversion function
     Function<Double, Double> conversionValue;
 
     SupportsArithmetic supportsArithmetic = () -> false;
@@ -42,6 +41,7 @@ public enum TemperatureUnit implements IMeasurable {
     @Override
     public double convertFromBaseUnit(double baseValue) {
         if (isFahrenheit) return (baseValue * 9 / 5) + 32;
+
         return baseValue;
     }
 
@@ -58,9 +58,14 @@ public enum TemperatureUnit implements IMeasurable {
         }
     }
 
-	@Override
-	public double toBase(double value) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public String getMeasurementType() {
+        return this.getClass().getSimpleName();
+    }
+
+    public static IMeasurable getUnitInstance(String unitName) {
+        for (TemperatureUnit unit : TemperatureUnit.values()) {
+            if (unit.name().equalsIgnoreCase(unitName)) return unit;
+        }
+        throw new IllegalArgumentException("Invalid temperature unit: " + unitName);
+    }
 }

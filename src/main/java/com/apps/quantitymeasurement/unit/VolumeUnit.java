@@ -1,4 +1,4 @@
-package com.apps.quantitymeasurement;
+package com.apps.quantitymeasurement.unit;
 
 public enum VolumeUnit implements IMeasurable {
     LITRE(1.0),
@@ -11,15 +11,18 @@ public enum VolumeUnit implements IMeasurable {
         this.conversionFactor = conversionFactor;
     }
 
+    @Override
     public double getConversionFactor() {
         return conversionFactor;
     }
 
+    @Override
     public double convertToBaseUnit(double value) {
         double result = value * conversionFactor;
         return roundOffTillTwoDecimal(result);
     }
 
+    @Override
     public double convertFromBaseUnit(double baseValue) {
         double result = baseValue / conversionFactor;
         return roundOffTillTwoDecimal(result);
@@ -29,14 +32,19 @@ public enum VolumeUnit implements IMeasurable {
         return Math.round(value * 100.0) / 100.0;
     }
 
-	@Override
-	public String getUnitName() {
-		return this.name();
-	}
+    @Override
+    public String getUnitName() {
+        return this.name();
+    }
 
-	@Override
-	public double toBase(double value) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public String getMeasurementType() {
+        return this.getClass().getSimpleName();
+    }
+
+    public static IMeasurable getUnitInstance(String unitName) {
+        for (VolumeUnit unit : VolumeUnit.values()) {
+            if (unit.name().equalsIgnoreCase(unitName)) return unit;
+        }
+        throw new IllegalArgumentException("Invalid volume unit: " + unitName);
+    }
 }
