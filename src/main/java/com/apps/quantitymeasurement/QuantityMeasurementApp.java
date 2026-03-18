@@ -4,13 +4,14 @@ import com.apps.quantitymeasurement.controller.QuantityMeasurementController;
 import com.apps.quantitymeasurement.entity.QuantityDTO;
 import com.apps.quantitymeasurement.repository.IQuantityMeasurementRepository;
 import com.apps.quantitymeasurement.repository.QuantityMeasurementCacheRepository;
+import com.apps.quantitymeasurement.repository.QuantityMeasurementDatabaseRepository;
 import com.apps.quantitymeasurement.service.IQuantityMeasurementService;
 import com.apps.quantitymeasurement.service.QuantityMeasurementServiceImpl;
 
 public class QuantityMeasurementApp {
 
     public static void main(String[] args) {
-    	IQuantityMeasurementRepository repository = QuantityMeasurementCacheRepository.getInstance();
+    	IQuantityMeasurementRepository repository = QuantityMeasurementDatabaseRepository.getInstance();
 
         IQuantityMeasurementService service = new QuantityMeasurementServiceImpl(repository);
 

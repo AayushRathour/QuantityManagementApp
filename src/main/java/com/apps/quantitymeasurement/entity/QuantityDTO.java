@@ -1,9 +1,6 @@
 package com.apps.quantitymeasurement.entity;
 
-/**
- * Data Transfer Object used for transferring quantity data
- * between Controller and Service layers.
- */
+// Data Transfer Object used for transferring quantity data
 public class QuantityDTO {
     private double value;
     private IMeasurableUnit unit;
