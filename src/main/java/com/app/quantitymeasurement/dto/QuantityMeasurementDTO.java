@@ -1,9 +1,10 @@
-package com.app.quantitymeasurement.model;
+package com.app.quantitymeasurement.dto;
 
 import lombok.Data;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.app.quantitymeasurement.model.QuantityMeasurementEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data

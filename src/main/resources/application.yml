@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/quantity_measurement
+    username: root
+    password: 7509
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
