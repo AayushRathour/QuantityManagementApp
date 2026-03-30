@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,8 +22,6 @@ import java.util.logging.Logger;
 @Slf4j
 @Tag(name = "Quantity Measurements", description = "REST API for quantity measurement operations")
 public class QuantityMeasurementController {
-    private static final Logger logger =Logger.getLogger(QuantityMeasurementController.class.getName());
-
     private final IQuantityMeasurementService service;
 
     @PostMapping("/compare")

@@ -2,9 +2,21 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/quantity_measurement
     username: root
-    password: 7509
+    password: 
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 
+            client-secret: 
 
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+
+security:
+  jwt:
+    secret: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFybmluZ3VuaXF1ZTdAZ21haWwuY29tIiwiZXhwIjoxNzc0NzgxMjcxLCJpYXQiOjE3NzQ2OTQ4NzF9.VfrEt2tY4TsY04kSOD6jkn8q3VAyl20J3QD3K7u3vAs
+    expiration: 864000000

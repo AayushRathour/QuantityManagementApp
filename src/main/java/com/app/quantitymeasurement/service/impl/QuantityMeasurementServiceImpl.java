@@ -1,10 +1,11 @@
-package com.app.quantitymeasurement.service;
+package com.app.quantitymeasurement.service.impl;
 
 import com.app.quantitymeasurement.dto.QuantityDTO;
 import com.app.quantitymeasurement.dto.QuantityMeasurementDTO;
 import com.app.quantitymeasurement.exception.QuantityMeasurementException;
 import com.app.quantitymeasurement.model.*;
 import com.app.quantitymeasurement.repository.QuantityMeasurementRepository;
+import com.app.quantitymeasurement.service.IQuantityMeasurementService;
 import com.app.quantitymeasurement.unit.IMeasurable;
 
 import lombok.RequiredArgsConstructor;

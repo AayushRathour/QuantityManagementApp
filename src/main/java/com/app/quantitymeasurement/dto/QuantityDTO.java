@@ -182,11 +182,4 @@ public class QuantityDTO {
         }
         return true;
     }
-
-//    Main method for testing
-    public static void main(String[] args) {
-        QuantityDTO dto = new QuantityDTO(1.0, "FEET", "LengthUnit");
-
-        System.out.println(dto);
-    }
 }
