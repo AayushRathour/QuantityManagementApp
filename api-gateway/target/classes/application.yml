@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: api-gateway
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/v1/auth/**
+
+        - id: quantity-service
+          uri: lb://quantity-service
+          predicates:
+            - Path=/api/v1/quantities/**
+          filters:
+            - name: JwtAuthenticationFilter
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+security:
+  jwt:
+    secret: ${jwt-secret-key}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

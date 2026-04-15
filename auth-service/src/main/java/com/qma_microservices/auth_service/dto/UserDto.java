@@ -1,0 +1,9 @@
+package com.qma_microservices.auth_service.dto;
+
+import lombok.Data;
+
+@Data
+public class UserDto {
+    private String name;
+    private  String email;
+}

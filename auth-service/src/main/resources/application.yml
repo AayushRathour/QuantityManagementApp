@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/qma_user_service_db
+    username: root
+    password: ${db_password}
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${google_client_id}
+            client-secret: ${google_client_secret}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: 8085
+
+security:
+  jwt:
+    secret: ${jwt-secret-key}
