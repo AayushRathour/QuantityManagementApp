@@ -10,7 +10,15 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+
 security:
   jwt:
-    secret: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFybmluZ3VuaXF1ZTdAZ21haWwuY29tIiwiZXhwIjoxNzc0NzgxMjcxLCJpYXQiOjE3NzQ2OTQ4NzF9.VfrEt2tY4TsY04kSOD6jkn8q3VAyl20J3QD3K7u3vAs
+    secret: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFybmluZ3VuaXF1ZTdAZ21haWwuY29tIiwiZXhwIjoxNzc0NzgxMjcxLCJpYXQiOjE3NzQ2OTQ4NzF9.VfrEt2tY04kSOD6jkn8q3VAyl20J3QD3K7u3vAs"
     expiration: 864000000
