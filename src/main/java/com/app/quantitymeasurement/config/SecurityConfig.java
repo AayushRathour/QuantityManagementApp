@@ -13,8 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -24,8 +22,6 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final JWTFilter filter;
-    private final AuthenticationSuccessHandler authenticationSuccessHandler;
-    private final AuthenticationFailureHandler authenticationFailureHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,19 +31,12 @@ public class SecurityConfig {
             .httpBasic(Customizer.withDefaults())
             .userDetailsService(userDetailsService)
             .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
-            .oauth2Login(oauth -> {
-                // Removed loginPage("/login/google") — Spring handles /oauth2/authorization/google automatically
-                oauth.successHandler(authenticationSuccessHandler);
-                oauth.failureHandler(authenticationFailureHandler);
-            })
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/api/v1/auth/**",   // auth endpoints (login, signup)
-                    "/login/**",         // login paths
-                    "/oauth2/**",        // OAuth2 redirect URIs
-                    "/swagger-ui/**",    // Swagger UI resources (all, not just index)
-                    "/swagger-ui.html",  // Swagger HTML entry
-                    "/v3/api-docs/**"    // OpenAPI JSON docs
+                    "/api/v1/auth/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/v3/api-docs/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             );
