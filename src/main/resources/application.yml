@@ -4,17 +4,10 @@ spring:
     username: admin
     password: ARgaming34
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 
-            client-secret: 
-
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
 
 security:
   jwt:
