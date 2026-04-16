@@ -3,6 +3,7 @@ spring:
     url: jdbc:mysql://quantity-db.cpk2qoaw4j8d.eu-north-1.rds.amazonaws.com:3306/quantity_db
     username: admin
     password: ARgaming34
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
