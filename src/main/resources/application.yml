@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/quantity_measurement
-    username: root
-    password: 
+    url: jdbc:mysql://quantity-db.cpk2qoaw4j8d.eu-north-1.rds.amazonaws.com:3306/quantity_db
+    username: admin
+    password: ARgaming34
 
   security:
     oauth2:
